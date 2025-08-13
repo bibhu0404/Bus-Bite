@@ -12,7 +12,7 @@ export default function AboutUs() {
 
       <div className="max-w-5xl mx-auto py-12 px-6 text-gray-700 leading-relaxed space-y-6">
         <section>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Our Vision</h2>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-2">Our Vision</h2>
           <p>
             BusBite aims to revolutionize highway food service by connecting
             passengers, buses, and restaurants through a seamless pre-order
