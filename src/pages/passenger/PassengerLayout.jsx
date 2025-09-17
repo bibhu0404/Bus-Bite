@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PassengerHeader from '../../components/passenger/PassengerHeader';
 import Footer from '../../components/default/Footer';
 import { Outlet, useNavigate } from 'react-router-dom';
+import JourneyInput from '../../components/passenger/JourneyInput';
 
 export default function PassengerLayout() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export default function PassengerLayout() {
   return (
     <>
       <PassengerHeader />
+      <JourneyInput />
       <Outlet />
       <Footer />
     </>
