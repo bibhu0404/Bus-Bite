@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import StatBox from './Statbox';
+import StatBox from './StatBox';            // ✅ FIXED CASE
 import DashboardCard from './DashboardCard';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -15,23 +15,19 @@ export default function RestaurantDashboard() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user && user.role === 'restaurant') {
+
+    if (user?.role === 'restaurant') {
       setCurrentUser(user);
     } else {
-      navigate('/auth'); // redirect if not a restaurant
+      navigate('/auth');
     }
   }, [navigate]);
 
-  const goToMenu = () => navigate('/restaurant/menu-management');
-  const goToOrders = () => navigate('/restaurant/orders');
-  const goToAnalytics = () => navigate('/restaurant/analytics');
-
-  // Optional: render nothing if currentUser is not set yet
   if (!currentUser) return null;
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
-      {/* Stats Widgets */}
+      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatBox icon={<FaClipboardList />} title="Total Orders" value="120" color="orange" />
         <StatBox icon={<FaMoneyBillWave />} title="Earnings (This Month)" value="₹56,300" color="green" />
@@ -39,28 +35,28 @@ export default function RestaurantDashboard() {
         <StatBox icon={<FaStar />} title="Avg. Rating" value="4.6 ★" color="purple" />
       </div>
 
-      {/* Dashboard Action Cards */}
+      {/* Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <DashboardCard
           title="Manage Menu"
           desc="Add, edit, or remove items from your restaurant's menu."
           color="red"
           btn="Edit Menu"
-          onClick={goToMenu}
+          onClick={() => navigate('/restaurant/menu-management')}
         />
         <DashboardCard
           title="View All Orders"
           desc="Keep track of new, pending, and completed orders."
           color="orange"
           btn="Orders List"
-          onClick={goToOrders}
+          onClick={() => navigate('/restaurant/orders')}
         />
         <DashboardCard
           title="Restaurant Analytics"
           desc="Gain insights into your sales, popular dishes, and customer feedback."
           color="purple"
           btn="View Analytics"
-          onClick={goToAnalytics}
+          onClick={() => navigate('/restaurant/analytics')}
         />
       </div>
     </div>
